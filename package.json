@@ -7,8 +7,11 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "dependencies": {
+    "@ethereum-attestation-service/eas-contracts": "^1.4.1",
+    "@ethereum-attestation-service/eas-sdk": "^1.6.0",
     "@fastify/multipart": "^7.7.3",
     "fastify": "^4.26.2",
-    "fastify-cli": "^6.1.1"
+    "fastify-cli": "^6.1.1",
+    "viem": "^2.9.16"
   }
 }
