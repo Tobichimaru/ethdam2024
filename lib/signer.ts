@@ -1,7 +1,8 @@
-import { useEffect, useState } from "react";
-import { useWalletClient } from "wagmi";
+const react = require("express");
+const wagmi = require("wagmi");
+
 import { type WalletClient } from "viem";
-import { BrowserProvider, JsonRpcSigner } from "ethers";
+import { BrowserProvider } from "ethers";
 
 export async function walletClientToSigner(walletClient: WalletClient) {
   const { account, chain, transport } = walletClient;
@@ -22,11 +23,11 @@ export async function walletClientToSigner(walletClient: WalletClient) {
 }
 
 export function useSigner() {
-  const { data: walletClient } = useWalletClient();
+  const { data: walletClient } = wagmi.useWalletClient();
 
-  const [signer, setSigner] = useState<JsonRpcSigner>(undefined);
+  const [signer, setSigner] = react.useState(undefined);
 
-  useEffect(() => {
+  react.useEffect(() => {
     if (walletClient) {
       walletClientToSigner(walletClient).then((signer) => {
         setSigner(signer);
