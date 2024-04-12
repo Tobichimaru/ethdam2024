@@ -1,5 +1,14 @@
 {
+  "version": "1.0.0",
+  "description": "Node.js &amp; Fastify server",
+  "type": "module",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
   "dependencies": {
-    "fastify": "^4.26.2"
+    "@fastify/multipart": "^7.7.3",
+    "fastify": "^4.26.2",
+    "fastify-cli": "^6.1.1"
   }
 }
