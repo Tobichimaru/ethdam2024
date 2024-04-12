@@ -25,3 +25,9 @@ export const DEPLOYMENT = {
       transportFactory: () => http()
     },
 }
+
+export type Chain = keyof typeof DEPLOYMENT;
+
+export function isChain(key: any): key is Chain {
+  return key in DEPLOYMENT;
+}

@@ -1,6 +1,23 @@
-# ethdam2024
+# Getting Started with [Fastify-CLI](https://www.npmjs.com/package/fastify-cli)
+This project was bootstrapped with Fastify-CLI.
 
-Packages:
-1. [viem](https://viem.sh/) for working with smart contracts
-2. [fastify](https://fastify.dev/) for server and API
-3. [EAS](https://docs.attest.org/docs/quick--start/contracts) for contracts
+## Available Scripts
+
+In the project directory, you can run:
+
+### `npm run dev`
+
+To start the app in dev mode.\
+Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+
+### `npm start`
+
+For production mode
+
+### `npm run test`
+
+Run the test cases.
+
+## Learn More
+
+To learn Fastify, check out the [Fastify documentation](https://fastify.dev/docs/latest/).
