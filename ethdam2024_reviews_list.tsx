@@ -44,14 +44,62 @@ const STYLES = {
     return `#${address.slice(2, 8)}`;
   };
   
+  const decodeData = (decodedDataJson) => {
+    return JSON.parse(decodedDataJson).reduce((data, field) => {
+      data[field.name] = field.value.value;
+      return data;
+    }, {});
+  };
+  
   const reactToReview = (attestationId, like) => {
     // TODO: Create an attestation for upvoting
   };
   
+  const GQL_ENDPOINT = "https://sepolia.easscan.org/graphql";
+  const REVIEWS_SCHEMA_ID =
+    "0x6fe41fc5a5c39368d2aa147368558ffa101c023136e60a84ef05281823ea1d4d";
+  
+  const recipientScoreResponse = fetch(GQL_ENDPOINT, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      query:
+        "query($likesWhere: AttestationWhereInput) { attestations(where: $likesWhere) { recipient, decodedDataJson }}",
+      variables: {
+        likesWhere: {
+          schemaId: {
+            equals: REVIEWS_SCHEMA_ID,
+          },
+        },
+      },
+    }),
+  });
+  
+  if (!recipientScoreResponse.ok) {
+    return <h1>Loading...</h1>;
+  }
+  
+  const recipientScores = recipientScoreResponse.body.data.attestations
+    .map((a) => {
+      const decodedData = decodeData(a.decodedDataJson);
+      return {
+        recipient: a.recipient,
+        like: decodedData.rating === true,
+      };
+    })
+    .reduce((scoresByRecipient, score) => {
+      const point = score.like ? 1 : -1;
+      scoresByRecipient[score.recipient] =
+        (scoresByRecipient[score.recipient] ?? 0) + point;
+      return scoresByRecipient;
+    }, {});
+  
   return (
     <div>
       <ul>
-        {props.attestations.map((a, i) => {
+        {(props.attestations ?? []).map((a, i) => {
           return (
             <li style={STYLES["reviewEntry"]}>
               <div style={STYLES["reviewEntryContainer"]}>
@@ -64,7 +112,8 @@ const STYLES = {
                         backgroundColor: ethAddressToColor(a.attester),
                       }}
                     >
-                      By: {a.attesterShortAddress}
+                      By: {a.attesterShortAddress} (🌟{" "}
+                      {recipientScores[a.recipient]})
                     </div>
                     <div
                       title={a.recipient}
@@ -73,7 +122,8 @@ const STYLES = {
                         backgroundColor: ethAddressToColor(a.recipient),
                       }}
                     >
-                      For: {a.recipientShortAddress}
+                      For: {a.recipientShortAddress} (🌟{" "}
+                      {recipientScores[a.recipient]})
                     </div>
                   </div>
                   <div style={STYLES["reviewEntryTitle"]}>{a.data.title}</div>
