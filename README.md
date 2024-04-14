@@ -4,14 +4,10 @@
 Post and receive verifiable reviews on the blockchain. Boost reputations, filter insights, and watch the emerging social network of blockchain attestations.
 
 ## Features
-- Write and post verifiable reviews for people (identified by their wallets)
-  - If your wallet is reputable, the reviews you give will boost their reputation
-- Receive provable reviews from others
-  - Reviews from reputable wallets will give you credibility
-- Upvote (downvote) reviews given to other people that you find helpful (unhelpful)
-- See the reviews that matter by filtering on the wallet address
-- See how a social graph emerges from the collective reviews
-  - The graph is shaped by the reviews’ helpfulness, a function of the rating and upvotes
+- **Write and post verifiable reviews** for people (identified by their wallets). If your wallet is reputable, the reviews you give will boost their reputation.
+- **Receive verifiable reviews** from others. Reviews from reputable wallets will give you credibility.
+- **Upvote (downvote) reviews** given to other people that you find helpful (unhelpful).
+- **Watch a social graph emerge** from the collective reviews. The graph is shaped by the reviews’ helpfulness, a function of the rating and upvotes.
 
 ## Using KudAs
 ### Installation
@@ -23,7 +19,6 @@ Post and receive verifiable reviews on the blockchain. Boost reputations, filter
 2. **Upvote helpful reviews**
    - Upvote reviews you find helpful via our [upvote schema](https://sepolia.easscan.org/attestation/view/0xc33ab62c0391f3f8b6f7ba6cfa6649ca5b0ceac2d42fcacb61a4f912f072b8ac) on EAS
 3. **Collect your verifiable reviews**
-   - Filter the reviews on an address to see the ones you care about 
    - If you’re proud of your verifiable reviews, share them with others (e.g., as references for a job interview)
 4. **Verify other people’s reviews**
    - Filter someone’s reviews and verify they’re valid EAS attestations (e.g., as a hiring manager)
@@ -39,14 +34,16 @@ Post and receive verifiable reviews on the blockchain. Boost reputations, filter
 - The NEAR components fetch attestation data from the EAS contracts using the [GraphQL API](https://docs.attest.org/docs/developer-tools/api) 
 
 ## Challenges Encountered
-- NEAR BOS does not support real debugging and testing 
-- Documentation for the dev environment is still quite new
-- EAS SDK is not available at NEAR
-- EAS SDK has conflicts with the latest version of certain libraries (e.g., Ethers)
+- NEAR BOS doesn't yet support easy debugging and testing.
+- NEAR Documentation for the dev environment is still quite new.
+- EAS SDK is not available on NEAR as it is an external library.
+- EAS SDK has conflicts with the latest version of certain libraries (e.g., Ethers).
+- There's no access to DOM API in the NEAR components.
 
 ## Future Work
-- Reviews of other wallets (objects)
-- Port the EAS SDK to a NEAR smart contract
+- Filter reviews that matter by filtering on wallet address.
+- Label which wallets are persons vs. smart contract protocols.
+- Port the EAS SDK to a NEAR smart contract.
 
 ## What We Learned
 - NEAR BOS components are powerful tools that help developers to embed and reuse the code. It enables calls to smart contracts from other chains. In addition, sandbox and test environments, and jitsu ai tools are really handy. 
