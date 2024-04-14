@@ -6,11 +6,6 @@ const [graphData, setGraphData] = useState(null);
 
 const svg = styled.svg`{}`;
 
-// props.attestations = [
-//   { attesterShortAddress: "0x2", recipientShortAddress: "0x3" },
-//   { attesterShortAddress: "0x3", recipientShortAddress: "0x2" },
-// ];
-
 const transformDataToGraph = (attestations) => {
   const nodes = {}; // Object to store unique nodes (addresses)
   const edges = []; // Array to store edges (connections)
@@ -21,20 +16,24 @@ const transformDataToGraph = (attestations) => {
     attestations.forEach((review) => {
       const reviewer = review.attesterShortAddress;
       const reviewed = review.recipientShortAddress;
+      const reviewerFullAddress = review.attester;
+      const reviewedFullAddress = review.recipient;
 
       // Add nodes if they don't exist yet
       if (!nodes[reviewer]) {
         nodes[reviewer] = {
           id: reviewer,
-          x: Math.random() * 600,
-          y: Math.random() * 400,
+          addr: reviewerFullAddress,
+          x: Math.random() * 500,
+          y: Math.random() * 300,
         }; // Random position for now
       }
       if (!nodes[reviewed]) {
         nodes[reviewed] = {
           id: reviewed,
-          x: Math.random() * 600,
-          y: Math.random() * 400,
+          addr: reviewedFullAddress,
+          x: Math.random() * 500,
+          y: Math.random() * 300,
         }; // Random position for now
       }
 
@@ -46,21 +45,24 @@ const transformDataToGraph = (attestations) => {
     for (const reviewId in attestations) {
       const review = attestations[reviewId];
       const reviewer = review.attesterShortAddress;
-      const reviewed = review.recipientShortAddress;
+      const reviewerFullAddress = review.attester;
+      const reviewedFullAddress = review.recipient;
 
       // Add nodes if they don't exist yet
       if (!nodes[reviewer]) {
         nodes[reviewer] = {
           id: reviewer,
-          x: Math.random() * 600,
-          y: Math.random() * 400,
+          addr: reviewerFullAddress,
+          x: Math.random() * 500,
+          y: Math.random() * 300,
         }; // Random position for now
       }
       if (!nodes[reviewed]) {
         nodes[reviewed] = {
           id: reviewed,
-          x: Math.random() * 600,
-          y: Math.random() * 400,
+          addr: reviewedFullAddress,
+          x: Math.random() * 500,
+          y: Math.random() * 300,
         }; // Random position for now
       }
 
@@ -103,13 +105,18 @@ useEffect(() => {
 
 function calculateRadius(node) {
   // TODO Adjust the logic here to scale the radius
-  const baseRadius = 50;
+  const baseRadius = 45;
   return baseRadius + 0; // TODO
 }
 
+const ethAddressToColor = (address) => {
+  console.log(`#${address.slice(2, 8)}`);
+  return `#${address.slice(2, 8)}`;
+};
+
 return (
-  <div>
-    <svg width="600" height="400">
+  <div style={{ justifyContent: "center", alignItems: "center" }}>
+    <svg width="800" height="600">
       {graphData.nodes.map((node) => (
         <g key={node.id}>
           {" "}
@@ -118,7 +125,7 @@ return (
             cx={node.x}
             cy={node.y}
             r={calculateRadius(node)} // Dynamic radius
-            fill="#91c52b"
+            fill={ethAddressToColor(node.addr)}
           />
           <text
             x={node.x}
@@ -126,7 +133,7 @@ return (
             textAnchor="middle" // Center the text
             dominantBaseline="central" // Center vertically
             fontSize="10px"
-            fill="black"
+            fill="#787878"
           >
             {node.id}
           </text>
