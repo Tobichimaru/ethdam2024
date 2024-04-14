@@ -14,11 +14,11 @@ Post and receive verifiable reviews on the blockchain. Boost reputations, filter
 [Installation Link](https://test.near.org/silent_ssh.testnet/widget/ethdam2024_wrapper)
 
 ### Full list of components
-1. https://test.near.social/silent_ssh.testnet/widget/ethdam2024_wrapper
-2. https://test.near.social/silent_ssh.testnet/widget/ethdam2024_reviews_graph
-3. https://test.near.social/ilyamatsuev.testnet/widget/ethdam2024_reviews_list
-4. https://test.near.social/silent_ssh.testnet/widget/ethdam2024_eas_fe
-5. https://test.near.social/silent_ssh.testnet/widget/walletconnect_testnet
+1. [Main wrapper](https://test.near.social/silent_ssh.testnet/widget/ethdam2024_wrapper)
+2. [Review graph](https://test.near.social/silent_ssh.testnet/widget/ethdam2024_reviews_graph)
+3. [Review list](https://test.near.social/ilyamatsuev.testnet/widget/ethdam2024_reviews_list)
+4. [EAS FE](https://test.near.social/silent_ssh.testnet/widget/ethdam2024_eas_fe)
+5. [Wallet connect](https://test.near.social/silent_ssh.testnet/widget/walletconnect_testnet)
 
 ### How to use KudAs
 1. **Post a review**
